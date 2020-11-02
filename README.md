@@ -4,11 +4,12 @@
 -   express
 -   [freeCodeCamp](https://www.freecodecamp.org/news/how-to-build-a-todo-app-with-react-typescript-nodejs-and-mongodb/#api-with-nodejs-express-mongodb-and-typescript)
 
-## 使用技术
+### 技术栈参考
 
--   typescript
--   express
--   node
+-   [react 官网](https://react.docschina.org/tutorial/tutorial.html)
+-   [typescript 官网](https://www.tslang.cn/docs/home.html)
+-   [node 官网](https://nodejs.org/en/)
+-   [mongoDB 官网](https://www.mongodb.com/)
 
 ## 优化
 
