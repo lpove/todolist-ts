@@ -12,8 +12,9 @@
 -   [typescript 官网](https://www.tslang.cn/docs/home.html)
 -   [node 官网](https://nodejs.org/en/)
 -   [mongoDB 官网](https://www.mongodb.com/)
+-   [create-react-app](https://create-react-app.dev/docs/getting-started#selecting-a-template)
 
-## 参考
+## 译文参考
 
 -   [freeCodeCamp](https://www.freecodecamp.org/news/how-to-build-a-todo-app-with-react-typescript-nodejs-and-mongodb/#api-with-nodejs-express-mongodb-and-typescript)
 
