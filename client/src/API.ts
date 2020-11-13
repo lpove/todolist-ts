@@ -61,3 +61,17 @@ export const deleteTodo = async (
         throw new Error(error);
     }
 };
+
+export const testSpider = async (
+    time?: string,
+    language?: string
+): Promise<AxiosResponse<ApiDataType>> => {
+    try {
+        const spiderJsonData: AxiosResponse<ApiDataType> = await axios.get(
+            `${baseUrl}/testSpider`
+        );
+        return spiderJsonData;
+    } catch (error) {
+        throw new Error(error);
+    }
+};

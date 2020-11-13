@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import TodoItem from './components/TodoItem'
 import AddTodo from './components/AddTodo'
-import { getTodos, addTodo, updateTodo, deleteTodo } from './API'
+import Spider from './components/Spider'
+import { getTodos, addTodo, updateTodo, deleteTodo, testSpider } from './API'
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState<ITodo[]>([])
+  const [todos, setTodos] = useState<ITodo[]>([]);
+
+  const [spiders, setSpiders] = useState<{}>({});
 
   useEffect(() => {
     fetchTodos()
@@ -50,9 +53,23 @@ const App: React.FC = () => {
       .catch((err) => console.log(err))
   }
 
+  const handleTestSpider = (time?:string, language?: string): void =>{
+    testSpider(time, language)
+      .then(({ status, data }) => {
+        console.log(status);
+        
+        if (status !== 200) {
+          throw new Error('Error! spider is bad')
+        }
+        setSpiders(data)
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <main className='App'>
       <h1>My Todos</h1>
+      <Spider testSpider={handleTestSpider}/>
       <AddTodo saveTodo={handleSaveTodo} />
       {todos.map((todo: ITodo) => (
         <TodoItem

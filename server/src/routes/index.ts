@@ -4,6 +4,7 @@ import {
     addTodo,
     updateTodo,
     deleteTodo,
+    testSpider,
 } from '../controllers/todos';
 
 const router: Router = Router();
@@ -15,5 +16,7 @@ router.post('/add-todo', addTodo);
 router.put('/edit-todo/:id', updateTodo);
 
 router.delete('/delete-todo/:id', deleteTodo);
+
+router.get('/testSpider', testSpider);
 
 export default router;
