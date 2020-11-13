@@ -7,6 +7,7 @@ import { getTodos, addTodo, updateTodo, deleteTodo, testSpider } from './API'
 const App: React.FC = () => {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [spiders, setSpiders] = useState<any[]>([]);
+  const [loading, setLoading] = useState<Boolean>(false)
 
   useEffect(() => {
     fetchTodos()
@@ -53,6 +54,7 @@ const App: React.FC = () => {
   }
 
   const handleTestSpider = (time?:string, language?: string): void =>{
+    setLoading(true);
     testSpider(time, language)
       .then(({ status, data }) => {
         console.log(data);
@@ -60,7 +62,8 @@ const App: React.FC = () => {
         if (status !== 200) {
           throw new Error('Error! spider is bad')
         }
-        setSpiders((data as any).values)
+        setLoading(false);
+        setSpiders((data as any).values);
       })
       .catch((err) => console.log(err))
   }
@@ -68,7 +71,7 @@ const App: React.FC = () => {
   return (
     <main className='App'>
       <h1>My Todos</h1>
-      <Spider testSpider={handleTestSpider} spiders={spiders}/>
+      <Spider testSpider={handleTestSpider} spiders={spiders} loading={loading}/>
       <AddTodo saveTodo={handleSaveTodo} />
       {todos.map((todo: ITodo) => (
         <TodoItem

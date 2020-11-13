@@ -2,10 +2,29 @@ import React from 'react'
 
 type Props =  {
     testSpider: (time?: string, language?: string) => void,
-    spiders: any[]
+    spiders: any[],
+    loading: Boolean
 }
 
-const Spider: React.FC<Props> = ({ spiders, testSpider }) => {
+const Spider: React.FC<Props> = ({ loading, spiders, testSpider }) => {
+  const $spiders = ()=>{
+    if(loading){
+      return 'loading...'
+    }
+    
+    if(spiders && spiders.length){
+      return  <div>
+      {spiders.slice(0,10).map(item=>{
+        return <p>
+          <a style={{color: 'white'}} href={item.links} target="_balnk" key={item.title}>{item.title}</a>
+          </p> 
+          })}
+        </div>
+    }
+
+    return null
+  }
+
   return (
     <div>
       <div>
@@ -19,13 +38,7 @@ const Spider: React.FC<Props> = ({ spiders, testSpider }) => {
           testSpider
         </button>
       </div>
-      <div>
-        {spiders && spiders.length ? spiders.slice(0,10).map(item=>{
-         return <p>
-         <a style={{color: 'white'}} href={item.links} target="_balnk" key={item.title}>{item.title}</a>
-         </p> 
-        }): null}
-      </div>
+      {$spiders()}
     </div>
   )
 }

@@ -67,9 +67,11 @@ export const testSpider = async (
     language?: string
 ): Promise<AxiosResponse<ApiDataType>> => {
     try {
+        console.log('loading...');
         const spiderJsonData: AxiosResponse<ApiDataType> = await axios.get(
             `${baseUrl}/testSpider`
         );
+        console.log('finish!');
         return spiderJsonData;
     } catch (error) {
         throw new Error(error);
