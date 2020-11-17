@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Robot from '../src/statics/images/robot.png'
 import Todo from './models/todolist'
+import Spider from './models/spider'
 
 
 const App: React.FC = () => {
@@ -17,6 +18,7 @@ const App: React.FC = () => {
     return (
       <Switch>
         <Route path="/todo" component={Todo} />
+        <Route path="/spider" component={Spider} />
         <Route component={Page404} />
       </Switch>
     );

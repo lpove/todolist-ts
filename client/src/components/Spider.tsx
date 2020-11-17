@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import './Spider.scss';
+
+const MAX = 10;
 
 type Props = {
   spider: (time?: string, language?: string) => void,
@@ -13,11 +16,26 @@ const Spider: React.FC<Props> = ({ loading, spiders, spider }) => {
     }
 
     if (spiders && spiders.length) {
-      return <div>
-        {spiders.slice(0, 10).map(item => {
-          return <p>
-            <a style={{ color: 'white' }} href={item.links} target="_balnk" key={item.title}>{item.title}</a>
-          </p>
+      return <div className="news">
+        {spiders.slice(0, MAX).map((item, index) => {
+          return <div className="item">
+            <div className="img-conatiner">
+              <img src={item.img} alt="icon" width={280} height={180} />
+            </div>
+            <div className="desc">
+              <header>
+                {index + 1}: <a className="link" style={{ color: 'white' }} href={item.links} target="_balnk" key={item.title}>{item.title}</a>
+              </header>
+              <section>
+                <p>{item.content}</p>
+              </section>
+              <footer>
+                <a href={item.tagsHref}>{item.tags}</a>
+                 |
+                <span>{item.time}</span>
+              </footer>
+            </div>
+          </div>
         })}
       </div>
     }
@@ -26,25 +44,27 @@ const Spider: React.FC<Props> = ({ loading, spiders, spider }) => {
   }
 
   return (
-    <div>
-      <div>
+    <div className="spider-form">
+      <section>
         clickMe
-      </div>
       <div className='Card--button'>
-        <button
-          onClick={() => spider('donews')}
-          className='Card--button__delete'
-        >
-          testDonews
+          <button
+            onClick={() => spider('donews')}
+            className='Card--button__delete'
+          >
+            testDonews
         </button>
-        <button
-          onClick={() => spider('githubTrending')}
-          className='Card--button__delete'
-        >
-          testGithubTrending
+          <button
+            onClick={() => spider('githubTrending')}
+            className='Card--button__delete'
+          >
+            testGithubTrending
         </button>
-      </div>
-      {$spiders()}
+        </div>
+      </section>
+      <section className="spider-container">
+        {$spiders()}
+      </section>
     </div>
   )
 }
