@@ -73,7 +73,7 @@ const deleteTodo = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
-const testSpider = async (req: Request, res: Response): Promise<void> => {
+const spider = async (req: Request, res: Response): Promise<void> => {
     try {
         const {
             params: { type },
@@ -84,7 +84,7 @@ const testSpider = async (req: Request, res: Response): Promise<void> => {
         console.log(JSON.stringify(data));
 
         res.status(200).json({
-            message: 'testSpider success',
+            message: 'spider success',
             values: data,
         });
     } catch (error) {
@@ -92,4 +92,4 @@ const testSpider = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
-export { getTodos, addTodo, updateTodo, deleteTodo, testSpider };
+export { getTodos, addTodo, updateTodo, deleteTodo, spider };

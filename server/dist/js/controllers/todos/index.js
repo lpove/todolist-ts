@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.testSpider = exports.deleteTodo = exports.updateTodo = exports.addTodo = exports.getTodos = void 0;
+exports.spider = exports.deleteTodo = exports.updateTodo = exports.addTodo = exports.getTodos = void 0;
 const todo_1 = __importDefault(require("../../models/todo"));
 const spider_1 = __importDefault(require("../../models/spider"));
 const getTodos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -77,13 +77,13 @@ const deleteTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.deleteTodo = deleteTodo;
-const testSpider = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const spider = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { params: { type }, } = req;
         const data = yield spider_1.default.spider(type);
         console.log(JSON.stringify(data));
         res.status(200).json({
-            message: 'testSpider success',
+            message: 'spider success',
             values: data,
         });
     }
@@ -91,4 +91,4 @@ const testSpider = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         throw error;
     }
 });
-exports.testSpider = testSpider;
+exports.spider = spider;

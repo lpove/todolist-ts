@@ -1,1 +1,1 @@
-export type APITypes = 'donews' | 'githubTrending';
+export type IAPITypes = 'donews' | 'githubTrending';

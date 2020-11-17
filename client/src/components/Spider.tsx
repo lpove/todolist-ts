@@ -1,12 +1,12 @@
 import React from 'react'
 
 type Props = {
-  testSpider: (time?: string, language?: string) => void,
+  spider: (time?: string, language?: string) => void,
   spiders: any[],
   loading: Boolean
 }
 
-const Spider: React.FC<Props> = ({ loading, spiders, testSpider }) => {
+const Spider: React.FC<Props> = ({ loading, spiders, spider }) => {
   const $spiders = () => {
     if (loading) {
       return 'loading...'
@@ -22,7 +22,7 @@ const Spider: React.FC<Props> = ({ loading, spiders, testSpider }) => {
       </div>
     }
 
-    return '暂无内容'
+    return null
   }
 
   return (
@@ -32,13 +32,13 @@ const Spider: React.FC<Props> = ({ loading, spiders, testSpider }) => {
       </div>
       <div className='Card--button'>
         <button
-          onClick={() => testSpider('donews')}
+          onClick={() => spider('donews')}
           className='Card--button__delete'
         >
           testDonews
         </button>
         <button
-          onClick={() => testSpider('githubTrending')}
+          onClick={() => spider('githubTrending')}
           className='Card--button__delete'
         >
           testGithubTrending

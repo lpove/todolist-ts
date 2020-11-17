@@ -18,8 +18,10 @@ function catchDonews(url: string) {
             $('.w1200 .w840').each(function () {
                 // 像jQuery一样获取对应节点值
                 let obj: any = {};
-                obj.title = $(this).find('3').text().trimStart().trimEnd(); // 获取标题
+                obj.title = $(this).find('h3').text().trimStart().trimEnd(); // 获取标题
+
                 console.log(obj);
+
                 list_array.push(obj);
 
                 // 检测各项数据是否正确

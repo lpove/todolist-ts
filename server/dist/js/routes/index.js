@@ -7,5 +7,5 @@ router.get('/todos', todos_1.getTodos);
 router.post('/add-todo', todos_1.addTodo);
 router.put('/edit-todo/:id', todos_1.updateTodo);
 router.delete('/delete-todo/:id', todos_1.deleteTodo);
-router.get('/testSpider/:type', todos_1.testSpider);
+router.get('/spider/:type', todos_1.spider);
 exports.default = router;
