@@ -17,12 +17,28 @@ function catchDonews(url) {
         const $ = cheerio_1.default.load(html_string); // 传入页面内容
         let list_array = [];
         $('.section-news-box .news-item').each(function () {
-            var _a;
+            var _a, _b;
             let that = this;
             // 像jQuery一样获取对应节点值
             let obj = {};
             obj.title = $(that).find('.title').text().trimStart().trimEnd(); // 获取标题
             obj.links = (_a = $(that).attr('href')) === null || _a === void 0 ? void 0 : _a.trimStart().trimEnd();
+            obj.img = (_b = $(that)
+                .find('img')
+                .attr('src')) === null || _b === void 0 ? void 0 : _b.trimStart().trimEnd();
+            obj.content = $(that)
+                .find('.desc')
+                .text()
+                .trimStart()
+                .trimEnd();
+            obj.tags = $(that).find('.name').text().trimStart().trimEnd();
+            obj.tagsHref = $(that).find('.name').attr('href');
+            obj.time = $(that)
+                .find('.pub-date')
+                .find('label')
+                .text()
+                .trimStart()
+                .trimEnd();
             list_array.push(obj);
             // 检测各项数据是否正确
             // console.log(obj);

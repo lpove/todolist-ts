@@ -18,13 +18,13 @@ const Spider: React.FC<Props> = ({ loading, spiders, spider }) => {
     if (spiders && spiders.length) {
       return <div className="news">
         {spiders.slice(0, MAX).map((item, index) => {
-          return <div className="item">
+          return <div className="item" key={item.title}>
             <div className="img-conatiner">
               <img src={item.img} alt="icon" width={280} height={180} />
             </div>
             <div className="desc">
               <header>
-                {index + 1}: <a className="link" style={{ color: 'white' }} href={item.links} target="_balnk" key={item.title}>{item.title}</a>
+                {index + 1}: <a className="link" href={item.links} target="_balnk" key={item.title}>{item.title}</a>
               </header>
               <section>
                 <p>{item.content}</p>

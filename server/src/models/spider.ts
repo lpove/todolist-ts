@@ -21,6 +21,24 @@ function catchDonews(url: string) {
                 let obj: any = {};
                 obj.title = $(that).find('.title').text().trimStart().trimEnd(); // 获取标题
                 obj.links = $(that).attr('href')?.trimStart().trimEnd();
+                obj.img = $(that)
+                    .find('img')
+                    .attr('src')
+                    ?.trimStart()
+                    .trimEnd();
+                obj.content = $(that)
+                    .find('.desc')
+                    .text()
+                    .trimStart()
+                    .trimEnd();
+                obj.tags = $(that).find('.name').text().trimStart().trimEnd();
+                obj.tagsHref = $(that).find('.name').attr('href');
+                obj.time = $(that)
+                    .find('.pub-date')
+                    .find('label')
+                    .text()
+                    .trimStart()
+                    .trimEnd();
 
                 list_array.push(obj);
 
