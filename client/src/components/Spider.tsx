@@ -31,7 +31,7 @@ const Spider: React.FC<Props> = ({ loading, spiders, spider }) => {
               </section>
               <footer>
                 <a href={item.tagsHref}>{item.tags}</a>
-                 |
+                &nbsp; | &nbsp;
                 <span>{item.time}</span>
               </footer>
             </div>

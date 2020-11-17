@@ -76,3 +76,18 @@ export const spider = async (
         throw new Error(error);
     }
 };
+
+export const getSpider = async (
+    type?: string
+): Promise<AxiosResponse<ApiDataType>> => {
+    try {
+        console.log('loading...');
+        const spiderJsonData: AxiosResponse<ApiDataType> = await axios.get(
+            `${baseUrl}/getSpider/${type}`
+        );
+        console.log('finish!');
+        return spiderJsonData;
+    } catch (error) {
+        throw new Error(error);
+    }
+};
