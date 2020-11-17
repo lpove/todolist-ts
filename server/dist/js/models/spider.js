@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const cheerio_1 = __importDefault(require("cheerio"));
+const mongoose_1 = require("mongoose");
 const API = {
     donews: 'https://www.donews.com',
     githubTrending: 'https://github.com/trending',
@@ -117,4 +118,12 @@ function spider(type = 'githubTrending') {
             return githubTrending(url);
     }
 }
-exports.default = { spider };
+const sipderSchema = new mongoose_1.Schema({
+    data: {
+        type: Array,
+        required: true,
+        index: true,
+    },
+}, { timestamps: true });
+const sipderSchemaModel = mongoose_1.model('Sipder', sipderSchema);
+exports.default = { spider, sipderSchemaModel };

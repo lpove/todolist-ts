@@ -8,4 +8,5 @@ router.post('/add-todo', todos_1.addTodo);
 router.put('/edit-todo/:id', todos_1.updateTodo);
 router.delete('/delete-todo/:id', todos_1.deleteTodo);
 router.get('/spider/:type', todos_1.spider);
+router.get('/getSpider/:type', todos_1.getSpider);
 exports.default = router;

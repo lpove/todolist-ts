@@ -1,5 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { model, Schema } from 'mongoose';
 import { IAPITypes } from './../types/spider';
 
 const API = {
@@ -131,4 +132,17 @@ function spider(type: IAPITypes = 'githubTrending') {
     }
 }
 
-export default { spider };
+const sipderSchema: Schema = new Schema(
+    {
+        data: {
+            type: Array,
+            required: true,
+            index: true,
+        },
+    },
+    { timestamps: true }
+);
+
+const sipderSchemaModel = model<any>('Sipder', sipderSchema);
+
+export default { spider, sipderSchemaModel };

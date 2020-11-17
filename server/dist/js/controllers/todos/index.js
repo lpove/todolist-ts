@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.spider = exports.deleteTodo = exports.updateTodo = exports.addTodo = exports.getTodos = void 0;
+exports.getSpider = exports.spider = exports.deleteTodo = exports.updateTodo = exports.addTodo = exports.getTodos = void 0;
 const todo_1 = __importDefault(require("../../models/todo"));
 const spider_1 = __importDefault(require("../../models/spider"));
 const getTodos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -81,7 +81,11 @@ const spider = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { params: { type }, } = req;
         const data = yield spider_1.default.spider(type);
-        console.log(JSON.stringify(data));
+        const sipders = new spider_1.default.sipderSchemaModel({
+            data,
+        });
+        // 存储新值
+        yield sipders.save();
         res.status(200).json({
             message: 'spider success',
             values: data,
@@ -92,3 +96,14 @@ const spider = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.spider = spider;
+const getSpider = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const spiders = yield spider_1.default.sipderSchemaModel.find();
+        console.log('spiders:', spiders);
+        res.status(200).json({ values: spiders });
+    }
+    catch (error) {
+        throw error;
+    }
+});
+exports.getSpider = getSpider;

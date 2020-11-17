@@ -81,7 +81,12 @@ const spider = async (req: Request, res: Response): Promise<void> => {
 
         const data = await Spider.spider(type as IAPITypes);
 
-        console.log(JSON.stringify(data));
+        const sipders = new Spider.sipderSchemaModel({
+            data,
+        });
+
+        // 存储新值
+        await sipders.save();
 
         res.status(200).json({
             message: 'spider success',
@@ -92,4 +97,16 @@ const spider = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
-export { getTodos, addTodo, updateTodo, deleteTodo, spider };
+const getSpider = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const spiders: any = await Spider.sipderSchemaModel.find();
+
+        console.log('spiders:', spiders);
+
+        res.status(200).json({ values: spiders });
+    } catch (error) {
+        throw error;
+    }
+};
+
+export { getTodos, addTodo, updateTodo, deleteTodo, spider, getSpider };
