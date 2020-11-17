@@ -1,12 +1,47 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
+import { IAPITypes } from './../types/spider';
 
-function test(time?: string, language?: string) {
-    let url =
-        'https://github.com/trending' +
-        (!!language ? '/' + language : '') +
-        '?since=' +
-        time; // 拼接请求的页面链接
+const API = {
+    donews: 'https://www.donews.com/digital/index',
+    githubTrending: 'https://github.com/trending',
+};
+
+function catchDonews(url: string) {
+    return axios
+        .get(url)
+        .then(function (response) {
+            let html_string = response.data.toString(); // 获取网页内容
+            const $ = cheerio.load(html_string); // 传入页面内容
+            let list_array: any[] = [];
+
+            $('.w1200 .w840').each(function () {
+                // 像jQuery一样获取对应节点值
+                let obj: any = {};
+                obj.title = $(this).find('3').text().trimStart().trimEnd(); // 获取标题
+                console.log(obj);
+                list_array.push(obj);
+
+                // 检测各项数据是否正确
+                // console.log(obj);
+            });
+
+            // 回归按新增 star 数量排名lop
+            list_array = list_array.sort((x, y) => {
+                return (
+                    parseInt(y.info.replace(/,/, '')) -
+                    parseInt(x.info.replace(/,/, ''))
+                );
+            });
+
+            return Promise.resolve(list_array);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+function githubTrending(url: string) {
     return axios
         .get(url)
         .then(function (response) {
@@ -69,4 +104,19 @@ function test(time?: string, language?: string) {
         });
 }
 
-export default { test };
+function spider(type: IAPITypes = 'githubTrending') {
+    let url = API[type];
+
+    switch (type) {
+        case API.donews:
+            return catchDonews(url);
+
+        case API.githubTrending:
+            return githubTrending(url);
+
+        default:
+            return githubTrending(url);
+    }
+}
+
+export default { spider };

@@ -1,5 +1,6 @@
 import { Response, Request } from 'express';
 import { ITodo } from './../../types/todo';
+import { IAPITypes } from './../../types/spider';
 import Todo from '../../models/todo';
 import Spider from '../../models/spider';
 
@@ -75,10 +76,10 @@ const deleteTodo = async (req: Request, res: Response): Promise<void> => {
 const testSpider = async (req: Request, res: Response): Promise<void> => {
     try {
         const {
-            params: { time },
+            params: { type },
         } = req;
 
-        const data = await Spider.test(time);
+        const data = await Spider.spider(type as IAPITypes);
 
         console.log(JSON.stringify(data));
 

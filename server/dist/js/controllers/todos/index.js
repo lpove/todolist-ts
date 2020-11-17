@@ -79,8 +79,8 @@ const deleteTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.deleteTodo = deleteTodo;
 const testSpider = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { params: { time }, } = req;
-        const data = yield spider_1.default.test(time);
+        const { params: { type }, } = req;
+        const data = yield spider_1.default.spider(type);
         console.log(JSON.stringify(data));
         res.status(200).json({
             message: 'testSpider success',

@@ -63,13 +63,12 @@ export const deleteTodo = async (
 };
 
 export const testSpider = async (
-    time?: string,
-    language?: string
+    type?: string
 ): Promise<AxiosResponse<ApiDataType>> => {
     try {
         console.log('loading...');
         const spiderJsonData: AxiosResponse<ApiDataType> = await axios.get(
-            `${baseUrl}/testSpider`
+            `${baseUrl}/testSpider/${type}`
         );
         console.log('finish!');
         return spiderJsonData;

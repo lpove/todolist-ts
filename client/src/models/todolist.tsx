@@ -53,9 +53,9 @@ const TodoList: React.FC = () => {
       .catch((err) => console.log(err))
   }
 
-  const handleTestSpider = (time?: string, language?: string): void => {
+  const handleTestSpider = (type?: string): void => {
     setLoading(true);
-    testSpider(time, language)
+    testSpider(type)
       .then(({ status, data }) => {
         console.log(data);
 

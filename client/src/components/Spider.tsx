@@ -1,28 +1,28 @@
 import React from 'react'
 
-type Props =  {
-    testSpider: (time?: string, language?: string) => void,
-    spiders: any[],
-    loading: Boolean
+type Props = {
+  testSpider: (time?: string, language?: string) => void,
+  spiders: any[],
+  loading: Boolean
 }
 
 const Spider: React.FC<Props> = ({ loading, spiders, testSpider }) => {
-  const $spiders = ()=>{
-    if(loading){
+  const $spiders = () => {
+    if (loading) {
       return 'loading...'
     }
-    
-    if(spiders && spiders.length){
-      return  <div>
-      {spiders.slice(0,10).map(item=>{
-        return <p>
-          <a style={{color: 'white'}} href={item.links} target="_balnk" key={item.title}>{item.title}</a>
-          </p> 
-          })}
-        </div>
+
+    if (spiders && spiders.length) {
+      return <div>
+        {spiders.slice(0, 10).map(item => {
+          return <p>
+            <a style={{ color: 'white' }} href={item.links} target="_balnk" key={item.title}>{item.title}</a>
+          </p>
+        })}
+      </div>
     }
 
-    return null
+    return '暂无内容'
   }
 
   return (
@@ -32,10 +32,16 @@ const Spider: React.FC<Props> = ({ loading, spiders, testSpider }) => {
       </div>
       <div className='Card--button'>
         <button
-          onClick={() => testSpider()}
+          onClick={() => testSpider('donews')}
           className='Card--button__delete'
         >
-          testSpider
+          testDonews
+        </button>
+        <button
+          onClick={() => testSpider('githubTrending')}
+          className='Card--button__delete'
+        >
+          testGithubTrending
         </button>
       </div>
       {$spiders()}
