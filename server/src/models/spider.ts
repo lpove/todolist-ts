@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 import { IAPITypes } from './../types/spider';
 
 const API = {
-    donews: 'https://www.donews.com/digital/index',
+    donews: 'https://www.donews.com',
     githubTrending: 'https://github.com/trending',
 };
 
@@ -15,25 +15,17 @@ function catchDonews(url: string) {
             const $ = cheerio.load(html_string); // 传入页面内容
             let list_array: any[] = [];
 
-            $('.w1200 .w840').each(function () {
+            $('.section-news-box .news-item').each(function () {
+                let that = this as any;
                 // 像jQuery一样获取对应节点值
                 let obj: any = {};
-                obj.title = $(this).find('h3').text().trimStart().trimEnd(); // 获取标题
-
-                console.log(obj);
+                obj.title = $(that).find('.title').text().trimStart().trimEnd(); // 获取标题
+                obj.links = $(that).attr('href')?.trimStart().trimEnd();
 
                 list_array.push(obj);
 
                 // 检测各项数据是否正确
                 // console.log(obj);
-            });
-
-            // 回归按新增 star 数量排名lop
-            list_array = list_array.sort((x, y) => {
-                return (
-                    parseInt(y.info.replace(/,/, '')) -
-                    parseInt(x.info.replace(/,/, ''))
-                );
             });
 
             return Promise.resolve(list_array);
@@ -110,10 +102,10 @@ function spider(type: IAPITypes = 'githubTrending') {
     let url = API[type];
 
     switch (type) {
-        case API.donews:
+        case 'donews':
             return catchDonews(url);
 
-        case API.githubTrending:
+        case 'githubTrending':
             return githubTrending(url);
 
         default:
