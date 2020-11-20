@@ -16,7 +16,7 @@ const TodoList: React.FC = () => {
             .then(({ data: { values } }) => {
                 setLoading(false);
 
-                setSpiders(values[0].data)
+                setSpiders((values as any)[0].data)
             })
             .catch((err: Error) => console.log(err))
     }

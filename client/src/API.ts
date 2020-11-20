@@ -64,10 +64,10 @@ export const deleteTodo = async (
 
 export const spider = async (
     type?: string
-): Promise<AxiosResponse<ApiDataType>> => {
+): Promise<AxiosResponse<ApiDataSpiderType>> => {
     try {
         console.log('loading...');
-        const spiderJsonData: AxiosResponse<ApiDataType> = await axios.get(
+        const spiderJsonData: AxiosResponse<ApiDataSpiderType> = await axios.get(
             `${baseUrl}/spider/${type}`
         );
         console.log('finish!');
@@ -79,10 +79,10 @@ export const spider = async (
 
 export const getSpider = async (
     type?: string
-): Promise<AxiosResponse<ApiDataType>> => {
+): Promise<AxiosResponse<ApiDataSpiderType>> => {
     try {
         console.log('loading...');
-        const spiderJsonData: AxiosResponse<ApiDataType> = await axios.get(
+        const spiderJsonData: AxiosResponse<ApiDataSpiderType> = await axios.get(
             `${baseUrl}/getSpider/${type}`
         );
         console.log('finish!');

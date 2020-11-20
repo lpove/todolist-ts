@@ -1,7 +1,9 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 import { model, Schema } from 'mongoose';
+import { Moment } from 'moment';
 import { IAPITypes } from './../types/spider';
+import { timeLog } from 'console';
 
 const API = {
     donews: 'https://www.donews.com',
@@ -138,6 +140,10 @@ const sipderSchema: Schema = new Schema(
             type: Array,
             required: true,
             index: true,
+        },
+        update: {
+            type: String,
+            timeLog: true,
         },
     },
     { timestamps: true }

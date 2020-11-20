@@ -101,8 +101,6 @@ const getSpider = async (req: Request, res: Response): Promise<void> => {
     try {
         const spiders: any = await Spider.sipderSchemaModel.find();
 
-        console.log('spiders:', spiders);
-
         res.status(200).json({ values: spiders });
     } catch (error) {
         throw error;

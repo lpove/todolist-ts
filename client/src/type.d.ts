@@ -17,3 +17,10 @@ type ApiDataType = {
     todos: ITodo[];
     todo?: ITodo;
 };
+
+type ApiDataSpiderType = {
+    data: {
+        values: Array;
+    };
+    [key: string]: any;
+};
