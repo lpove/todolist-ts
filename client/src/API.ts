@@ -79,10 +79,10 @@ export const spider = async (
 
 export const getSpider = async (
     type?: string
-): Promise<AxiosResponse<ApiDataType>> => {
+): Promise<AxiosResponse<ApiSpiderTypes>> => {
     try {
         console.log('loading...');
-        const spiderJsonData: AxiosResponse<ApiDataType> = await axios.get(
+        const spiderJsonData: AxiosResponse<ApiSpiderTypes> = await axios.get(
             `${baseUrl}/getSpider/${type}`
         );
         console.log('finish!');
